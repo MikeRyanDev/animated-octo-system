@@ -4,7 +4,8 @@
     "jsx": "react-jsx",
     "outDir": "dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "dist/.tsbuildinfo"
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "types": ["vite/client"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["dist"]

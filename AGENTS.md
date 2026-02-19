@@ -2,6 +2,30 @@
 
 This file defines the default engineering rules for this repository and everything under it.
 
+## Project Purpose
+
+Frenchfry is a riff on liveloveapp/hashbrown.
+
+Its purpose is to provide a strongly-typed, reactive agent runtime and UI integration stack for building realtime voice + tool-driven applications on top of OpenAI Realtime API over WebRTC. The system should let agents call tools that can render UI elements, with a framework-agnostic core and ergonomic framework bindings.
+
+## Repository Structure
+
+```text
+packages/
+  core/       framework-agnostic frontend connection logic (no UI rendering)
+  react/      React bindings built on top of core and Hashbrown UI patterns
+  runtime/    server runtime/proxy to OpenAI (including API-key injection boundary)
+demos/
+  app/        demo React application
+  server/     demo server
+.env          local OpenAI API key and local runtime configuration
+```
+
+Notes:
+- `packages/*` are publishable npm packages.
+- Keep cross-package boundaries explicit; do not leak UI concerns into `packages/core`.
+- `packages/runtime` owns server-side side-effect boundaries for OpenAI connectivity concerns.
+
 ## Core Principles
 
 - Use strict TypeScript and prove correctness through strong, explicit types.
@@ -107,4 +131,3 @@ Preferred script contract (npm):
 - `npm run build`
 
 If scripts are missing, add/update scripts to satisfy this contract as part of the task.
-

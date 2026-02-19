@@ -4,17 +4,19 @@
   "private": true,
   "workspaces": ["packages/*", "demos/*"],
   "scripts": {
-    "lint": "biome check .",
+    "build": "npm run build --workspaces --if-present",
+    "dev:app": "npm run dev --workspace @frenchfry/demo-app",
+    "dev:server": "npm run dev --workspace @frenchfry/demo-server",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "biome check .",
     "test": "npm run test --workspaces --if-present",
     "test:coverage": "npm run test:coverage --workspaces --if-present",
-    "build": "npm run build --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
     "@biomejs/biome": "^1.9.4",
+    "@types/node": "^24.3.0",
     "@vitest/coverage-v8": "^3.2.4",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
