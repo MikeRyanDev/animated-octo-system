@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: frenchfry-demo-server
+    runtime: node
+    plan: free
+    repo: https://github.com/MikeRyanDev/animated-octo-system
+    branch: main
+    buildCommand: npm ci && npm run build --workspace @frenchfry/runtime && npm run build --workspace @frenchfry/demo-server
+    startCommand: npm run start --workspace @frenchfry/demo-server
+    healthCheckPath: /health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: REALTIME_MODEL
+        value: gpt-realtime
+      - key: REALTIME_VOICE
+        value: marin
+  - type: web
+    name: frenchfry-demo-app
+    runtime: static
+    repo: https://github.com/MikeRyanDev/animated-octo-system
+    branch: main
+    buildCommand: npm ci && npm run build --workspace @frenchfry/demo-app
+    staticPublishPath: demos/app/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_SESSION_ENDPOINT
+        sync: false

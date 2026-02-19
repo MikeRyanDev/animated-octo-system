@@ -29,7 +29,7 @@ export interface DemoServerConfig {
  */
 export function resolveDemoServerConfig(env: NodeJS.ProcessEnv): DemoServerConfig {
   const model = env.REALTIME_MODEL ?? "gpt-realtime";
-  const port = Number.parseInt(env.DEMO_SERVER_PORT ?? "3001", 10);
+  const port = Number.parseInt(env.PORT ?? env.DEMO_SERVER_PORT ?? "3001", 10);
   const voice = env.REALTIME_VOICE ?? "marin";
 
   return {
